@@ -1,0 +1,181 @@
+ ans 3 
+// Employee base class
+public abstract class Employee : IPrintable
+{
+    public string Name { get; set; }
+    public int Id { get; set; }
+    public double BasicSalary { get; set; }
+    public double NetSalary { get; protected set; }
+
+    public abstract double CalculateSalary();
+
+    public virtual void PrintDetails()
+    {
+        Console.WriteLine("Employee Details:");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"ID: {Id}");
+        Console.WriteLine($"Basic Salary: {BasicSalary}");
+        Console.WriteLine($"Net Salary: {NetSalary}");
+    }
+}
+
+// Manager class
+public class Manager : Employee
+{
+    private double petrolAllowance;
+    private double foodAllowance;
+    private double otherAllowance;
+
+    public Manager(string name, int id, double basicSalary)
+    {
+        Name = name;
+        Id = id;
+        BasicSalary = basicSalary;
+        CalculateSalary();
+    }
+
+    public override double CalculateSalary()
+    {
+        petrolAllowance = 0.08 * BasicSalary;
+        foodAllowance = 0.13 * BasicSalary;
+        otherAllowance = 0.03 * BasicSalary;
+        double grossSalary = BasicSalary + petrolAllowance + foodAllowance + otherAllowance;
+        double pf = 0.12 * BasicSalary;
+        NetSalary = grossSalary - pf;
+        return NetSalary;
+    }
+
+    public override void PrintDetails()
+    {
+        Console.WriteLine("Manager Details:");
+        base.PrintDetails();
+        Console.WriteLine($"Petrol Allowance: {petrolAllowance}");
+        Console.WriteLine($"Food Allowance: {foodAllowance}");
+        Console.WriteLine($"Other Allowance: {otherAllowance}");
+    }
+}
+
+// MarketingExecutive class
+public class MarketingExecutive : Employee
+{
+    private double tourAllowance;
+    private double telephoneAllowance;
+    private double kilometerTravel;
+
+    public MarketingExecutive(string name, int id, double basicSalary, double kilometerTravel)
+    {
+        Name = name;
+        Id = id;
+        BasicSalary = basicSalary;
+        this.kilometerTravel = kilometerTravel;
+        CalculateSalary();
+    }
+
+    public override double CalculateSalary()
+    {
+        tourAllowance = 5 * kilometerTravel;
+        telephoneAllowance = 1000;
+        double grossSalary = BasicSalary + tourAllowance + telephoneAllowance;
+        double pf = 0.12 * BasicSalary;
+        NetSalary = grossSalary - pf;
+        return NetSalary;
+    }
+
+    public override void PrintDetails()
+    {
+        Console.WriteLine("Marketing Executive Details:");
+        base.PrintDetails();
+        Console.WriteLine($"Kilometer Travel: {kilometerTravel}");
+        Console.WriteLine($"Tour Allowance: {tourAllowance}");
+        Console.WriteLine($"Telephone Allowance: {telephoneAllowance}");
+    }
+}
+
+// IPrintable interface
+public interface IPrintable
+{
+    void PrintDetails();
+}
+
+part 2 
+
+using System;
+using System.Collections.Generic;
+
+class MyStack : ICloneable
+{
+    private int[] arr;
+    private int top;
+    private int size;
+
+    public MyStack(int size)
+    {
+        this.size = size;
+        arr = new int[size];
+        top = -1;
+    }
+
+    public void Push(int x)
+    {
+        if (top == size - 1)
+        {
+            throw new StackException("Stack is full");
+        }
+        arr[++top] = x;
+    }
+
+    public int Pop()
+    {
+        if (top == -1)
+        {
+            throw new StackException("Stack is empty");
+        }
+        return arr[top--];
+    }
+
+    public object Clone()
+    {
+        MyStack clonedStack = new MyStack(this.size);
+        clonedStack.top = this.top;
+        for (int i = 0; i <= top; i++)
+        {
+            clonedStack.arr[i] = this.arr[i];
+        }
+        return clonedStack;
+    }
+}
+
+part 3 
+
+using System;
+
+public class StackException : Exception
+{
+    public StackException(string message) : base(message) { }
+}
+
+public class Stack
+{
+    private int top = -1;
+    private int[] items = new int[10];
+
+    public void Push(int item)
+    {
+        if (top == items.Length - 1)
+        {
+            throw new StackException("Stack is full");
+        }
+        items[++top] = item;
+    }
+
+    public int Pop()
+    {
+        if (top == -1)
+        {
+            throw new StackException("Stack is empty");
+        }
+        return items[top--];
+    }
+}
+
+

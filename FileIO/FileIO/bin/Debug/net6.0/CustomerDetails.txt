@@ -1,0 +1,3 @@
+Name: A.txt
+Account Number: 1234
+IFSC :qwe

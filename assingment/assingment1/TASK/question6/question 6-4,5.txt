@@ -1,0 +1,161 @@
+question 6 -4,5 part
+ 
+using System;
+
+namespace MyNamespace
+{
+    // ICICIBank class with event handlers
+    public class ICICIBank
+    {
+        private decimal balance;
+
+        // Event for under balance
+        public event EventHandler UnderBalance;
+
+        // Event for zero balance
+        public event EventHandler BalanceZero;
+
+        // Constructor to initialize the balance
+        public ICICIBank(decimal balance)
+        {
+            this.balance = balance;
+        }
+
+        // Method to withdraw money
+        public void Withdraw(decimal amount)
+        {
+            // Check if the balance is less than the amount to withdraw
+            if (balance < amount)
+            {
+                // Raise the UnderBalance event
+                if (UnderBalance != null)
+                {
+                    UnderBalance(this, EventArgs.Empty);
+                }
+                Console.WriteLine("Transaction cannot be continued as balance is insufficient in Account.");
+            }
+            else
+            {
+                balance -= amount;
+            }
+
+            // Check if the balance is zero
+            if (balance == 0)
+            {
+                // Raise the BalanceZero event
+                if (BalanceZero != null)
+                {
+                    BalanceZero(this, EventArgs.Empty);
+                }
+                Console.WriteLine("Transaction cannot be continued as balance is zero in Account.");
+            }
+        }
+    }
+
+    // HDFCBank class with event handlers
+    public class HDFCBank
+    {
+        private decimal balance;
+
+        // Event for under balance
+        public event EventHandler UnderBalance;
+
+        // Event for zero balance
+        public event EventHandler BalanceZero;
+
+        // Constructor to initialize the balance
+        public HDFCBank(decimal balance)
+        {
+            this.balance = balance;
+        }
+
+        // Method to withdraw money
+        public void Withdraw(decimal amount)
+        {
+            // Check if the balance is less than the amount to withdraw
+            if (balance < amount)
+            {
+                // Raise the UnderBalance event
+                if (UnderBalance != null)
+                {
+                    UnderBalance(this, EventArgs.Empty);
+                }
+                Console.WriteLine("Transaction cannot be continued below specified limit of Rs.-1000.");
+            }
+            else
+            {
+                balance -= amount;
+            }
+
+            // Check if the balance is zero
+            if (balance == 0)
+            {
+                // Raise the BalanceZero event
+                if (BalanceZero != null)
+                {
+                    BalanceZero(this, EventArgs.Empty);
+                }
+                Console.WriteLine("Transaction cannot be continued as balance is zero in Account.");
+            }
+        }
+    }
+
+    using System;
+
+namespace MyNamespace
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create an ICICIBank object with initial balance of 5000
+            var iciciBank = new ICICIBank(5000);
+
+            // Subscribe to the UnderBalance event
+            iciciBank.UnderBalance += (sender, e) =>
+            {
+                Console.WriteLine("UnderBalance event triggered for ICICIBank!");
+            };
+
+            // Subscribe to the BalanceZero event
+            iciciBank.BalanceZero += (sender, e) =>
+            {
+                Console.WriteLine("BalanceZero event triggered for ICICIBank!");
+            };
+
+            // Withdraw an amount greater than the balance
+            iciciBank.Withdraw(6000);
+
+            // Withdraw an amount equal to the balance
+            iciciBank.Withdraw(5000);
+
+            // Withdraw an amount that will result in a zero balance
+            iciciBank.Withdraw(5000);
+
+            // Create an HDFCBank object with initial balance of 2000
+            var hdfcBank = new HDFCBank(2000);
+
+            // Subscribe to the UnderBalance event
+            hdfcBank.UnderBalance += (sender, e) =>
+            {
+                Console.WriteLine("UnderBalance event triggered for HDFCBank!");
+            };
+
+            // Subscribe to the BalanceZero event
+            hdfcBank.BalanceZero += (sender, e) =>
+            {
+                Console.WriteLine("BalanceZero event triggered for HDFCBank!");
+            };
+
+            // Withdraw an amount greater than the balance
+            hdfcBank.Withdraw(3000);
+
+            // Withdraw an amount that will result in a balance of less than 1000
+            hdfcBank.Withdraw(1000);
+
+            // Withdraw an amount that will result in a zero balance
+            hdfcBank.Withdraw(1000);
+        }
+    }
+}
+

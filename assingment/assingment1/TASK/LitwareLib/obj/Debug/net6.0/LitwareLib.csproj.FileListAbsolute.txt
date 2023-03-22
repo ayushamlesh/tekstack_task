@@ -1,0 +1,5 @@
+D:\C# capgimini assingment\assingment1\LitwareLib\obj\Debug\net6.0\LitwareLib.csproj.AssemblyReference.cache
+D:\C# capgimini assingment\assingment1\LitwareLib\obj\Debug\net6.0\LitwareLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\C# capgimini assingment\assingment1\LitwareLib\obj\Debug\net6.0\LitwareLib.AssemblyInfoInputs.cache
+D:\C# capgimini assingment\assingment1\LitwareLib\obj\Debug\net6.0\LitwareLib.AssemblyInfo.cs
+D:\C# capgimini assingment\assingment1\LitwareLib\obj\Debug\net6.0\LitwareLib.csproj.CoreCompileInputs.cache

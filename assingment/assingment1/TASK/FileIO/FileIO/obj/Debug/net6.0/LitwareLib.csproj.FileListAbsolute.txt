@@ -1,0 +1,15 @@
+E:\capgemini\training\TASK\FileIO\FileIO\bin\Debug\net6.0\LitwareLib.exe
+E:\capgemini\training\TASK\FileIO\FileIO\bin\Debug\net6.0\LitwareLib.deps.json
+E:\capgemini\training\TASK\FileIO\FileIO\bin\Debug\net6.0\LitwareLib.runtimeconfig.json
+E:\capgemini\training\TASK\FileIO\FileIO\bin\Debug\net6.0\LitwareLib.dll
+E:\capgemini\training\TASK\FileIO\FileIO\bin\Debug\net6.0\LitwareLib.pdb
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.csproj.AssemblyReference.cache
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.GeneratedMSBuildEditorConfig.editorconfig
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.AssemblyInfoInputs.cache
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.AssemblyInfo.cs
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.csproj.CoreCompileInputs.cache
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.dll
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\refint\LitwareLib.dll
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.pdb
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\LitwareLib.genruntimeconfig.cache
+E:\capgemini\training\TASK\FileIO\FileIO\obj\Debug\net6.0\ref\LitwareLib.dll

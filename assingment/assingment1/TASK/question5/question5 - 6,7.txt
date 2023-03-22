@@ -1,0 +1,73 @@
+question 5 - 6, 7 part
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace MyNamespace
+{
+    public class Player
+    {
+        public string Name { get; set; }
+        public int RunsScored { get; set; }
+    }
+
+    public class Team : IEnumerable<Player>
+    {
+        private Player[] players;
+
+        public Team(int size)
+        {
+            players = new Player[size];
+        }
+
+        public void AddPlayer(int index, Player player)
+        {
+            players[index] = player;
+        }
+
+        public IEnumerator<Player> GetEnumerator()
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                yield return players[i];
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create a team with 3 players
+            Team india = new Team(3);
+
+            // Add players to the team
+            india.AddPlayer(0, new Player() { Name = "Virat Kohli", RunsScored = 12000 });
+            india.AddPlayer(1, new Player() { Name = "Rohit Sharma", RunsScored = 9000 });
+            india.AddPlayer(2, new Player() { Name = "Jasprit Bumrah", RunsScored = 50 });
+
+            // Use foreach loop to iterate through the team
+            Console.WriteLine("Players in Team India:");
+            foreach (Player player in india)
+            {
+                Console.WriteLine($"Name: {player.Name}, Runs Scored: {player.RunsScored}");
+            }
+
+            // Use an iterator to iterate through the players
+            Console.WriteLine("Using iterator to iterate through the players:");
+            IEnumerator<Player> iterator = india.GetEnumerator();
+            while (iterator.MoveNext())
+            {
+                Player player = iterator.Current;
+                Console.WriteLine($"Name: {player.Name}, Runs Scored: {player.RunsScored}");
+            }
+        }
+    }
+}

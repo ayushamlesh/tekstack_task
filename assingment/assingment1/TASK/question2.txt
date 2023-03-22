@@ -1,0 +1,118 @@
+question 2 part a
+
+
+using System;
+
+namespace LitwareLib
+{
+    public class Employee
+    {
+        private int EmpNo;
+        private string EmpName;
+        private double Salary;
+        private double HRA;
+        private double TA;
+        private double DA;
+        private double PF;
+        private double TDS;
+        private double NetSalary;
+        private double GrossSalary;
+
+        public void AcceptEmployeeDetails(int empNo, string empName, double salary)
+        {
+            EmpNo = empNo;
+            EmpName = empName;
+            Salary = salary;
+
+            if (Salary < 5000)
+            {
+                HRA = 0.1 * Salary;
+                TA = 0.05 * Salary;
+                DA = 0.15 * Salary;
+            }
+            else if (Salary < 10000)
+            {
+                HRA = 0.15 * Salary;
+                TA = 0.1 * Salary;
+                DA = 0.2 * Salary;
+            }
+            else if (Salary < 15000)
+            {
+                HRA = 0.2 * Salary;
+                TA = 0.15 * Salary;
+                DA = 0.25 * Salary;
+            }
+            else if (Salary < 20000)
+            {
+                HRA = 0.25 * Salary;
+                TA = 0.2 * Salary;
+                DA = 0.3 * Salary;
+            }
+            else
+            {
+                HRA = 0.3 * Salary;
+                TA = 0.25 * Salary;
+                DA = 0.35 * Salary;
+            }
+
+            GrossSalary = Salary + HRA + TA + DA;
+
+            CalculateSalary();
+        }
+
+        private void CalculateSalary()
+        {
+            PF = 0.1 * GrossSalary;
+            TDS = 0.18 * GrossSalary;
+            NetSalary = GrossSalary - (PF + TDS);
+        }
+
+        public double GetGrossSalary()
+        {
+            return GrossSalary;
+        }
+    }
+}
+
+part b
+
+using LitwareLib;
+
+namespace EmployeeManagement
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                Employee emp = new Employee();
+
+                Console.WriteLine("Enter Employee Details:");
+                Console.Write("EmpNo: ");
+                int empNo = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("EmpName: ");
+                string empName = Console.ReadLine();
+
+                Console.Write("Salary: ");
+                double salary = Convert.ToDouble(Console.ReadLine());
+
+                emp.AcceptEmployeeDetails(empNo, empName, salary);
+
+                Console.WriteLine("Gross Salary: {0}", emp.GetGrossSalary());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+··
+
+

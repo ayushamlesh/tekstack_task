@@ -1,0 +1,15 @@
+D:\C# capgimini assingment\assingment1\assingment1\bin\Debug\net6.0\assingment1.exe
+D:\C# capgimini assingment\assingment1\assingment1\bin\Debug\net6.0\assingment1.deps.json
+D:\C# capgimini assingment\assingment1\assingment1\bin\Debug\net6.0\assingment1.runtimeconfig.json
+D:\C# capgimini assingment\assingment1\assingment1\bin\Debug\net6.0\assingment1.dll
+D:\C# capgimini assingment\assingment1\assingment1\bin\Debug\net6.0\assingment1.pdb
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.csproj.AssemblyReference.cache
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.GeneratedMSBuildEditorConfig.editorconfig
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.AssemblyInfoInputs.cache
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.AssemblyInfo.cs
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.csproj.CoreCompileInputs.cache
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.dll
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\refint\assingment1.dll
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.pdb
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\assingment1.genruntimeconfig.cache
+D:\C# capgimini assingment\assingment1\assingment1\obj\Debug\net6.0\ref\assingment1.dll

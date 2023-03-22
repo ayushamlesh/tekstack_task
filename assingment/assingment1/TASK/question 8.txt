@@ -1,0 +1,141 @@
+question 8
+
+using System;
+using System.Reflection;
+
+namespace DynamicAssemblyLoading
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the path to the assembly:");
+            string assemblyPath = Console.ReadLine();
+
+            // Load the assembly at runtime
+            Assembly assembly = Assembly.LoadFrom(assemblyPath);
+
+            Console.WriteLine("The following types are available in the assembly:");
+            foreach (Type type in assembly.GetTypes())
+            {
+                Console.WriteLine("- " + type.FullName);
+                Console.WriteLine("  The following members are available in this type:");
+
+                foreach (MemberInfo member in type.GetMembers())
+                {
+                    Console.WriteLine("  - " + member.Name);
+                }
+            }
+
+            Console.WriteLine("Enter the name of the type you want to use:");
+            string typeName = Console.ReadLine();
+
+            Type selectedType = assembly.GetType(typeName);
+
+            Console.WriteLine("Enter the name of the method you want to invoke:");
+            string methodName = Console.ReadLine();
+
+            MethodInfo selectedMethod = selectedType.GetMethod(methodName);
+
+            Console.WriteLine("Enter the argument for the method (if any):");
+            string argument = Console.ReadLine();
+
+            object result = selectedMethod.Invoke(Activator.CreateInstance(selectedType), argument == "" ? null : new object[] { argument });
+
+            Console.WriteLine("The result of the method invocation is: " + result);
+        }
+    }
+}
+part 2 
+
+using System;
+
+namespace MyNamespace
+{
+    [AttributeUsage(AttributeTargets.Class)]
+    public class SoftwareAttribute : Attribute
+    {
+        private string projectName;
+        private string description;
+        private string clientName;
+        private string startedDate;
+        private string endDate;
+
+        public SoftwareAttribute(string projectName, string description, string clientName, string startedDate, string endDate)
+        {
+            this.projectName = projectName;
+            this.description = description;
+            this.clientName = clientName;
+            this.startedDate = startedDate;
+            this.endDate = endDate;
+        }
+
+        public string ProjectName { get { return projectName; } }
+        public string Description { get { return description; } }
+        public string ClientName { get { return clientName; } }
+        public string StartedDate { get { return startedDate; } }
+        public string EndDate { get { return endDate; } }
+    }
+
+    [Software("HDFC Account Management System", "Manages HDFC bank accounts", "HDFC Bank", "01/01/2021", "31/12/2021")]
+    public class HDFCAccount
+    {
+        public void Deposit(double amount)
+        {
+            Console.WriteLine($"Depositing {amount} in HDFC account.");
+        }
+
+        public void Withdraw(double amount)
+        {
+            Console.WriteLine($"Withdrawing {amount} from HDFC account.");
+        }
+    }
+
+    [Software("ICICI Account Management System", "Manages ICICI bank accounts", "ICICI Bank", "01/01/2021", "31/12/2021")]
+    public class ICICIAccount
+    {
+        public void Deposit(double amount)
+        {
+            Console.WriteLine($"Depositing {amount} in ICICI account.");
+        }
+
+        public void Withdraw(double amount)
+        {
+            Console.WriteLine($"Withdrawing {amount} from ICICI account.");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Type hdfcType = typeof(HDFCAccount);
+            Type iciciType = typeof(ICICIAccount);
+
+            Console.WriteLine($"HDFC Account details:");
+            PrintAttributeInfo(hdfcType);
+
+            Console.WriteLine($"ICICI Account details:");
+            PrintAttributeInfo(iciciType);
+        }
+
+        static void PrintAttributeInfo(Type type)
+        {
+            object[] attributes = type.GetCustomAttributes(typeof(SoftwareAttribute), true);
+
+            if (attributes.Length > 0)
+            {
+                SoftwareAttribute attribute = (SoftwareAttribute)attributes[0];
+                Console.WriteLine($"Project Name: {attribute.ProjectName}");
+                Console.WriteLine($"Description: {attribute.Description}");
+                Console.WriteLine($"Client Name: {attribute.ClientName}");
+                Console.WriteLine($"Started Date: {attribute.StartedDate}");
+                Console.WriteLine($"End Date: {attribute.EndDate}");
+            }
+            else
+            {
+                Console.WriteLine("No SoftwareAttribute applied to this type.");
+            }
+        }
+    }
+}
